@@ -9,8 +9,6 @@ class VLCPlayer {
     this.currentTime = 0;
     this.duration = 0;
     this.isPlaying = false;
-
-    this.init();
   }
 
   init() {
@@ -26,6 +24,7 @@ class VLCPlayer {
     this.player.controls = this.controls;
 
     const container = document.getElementById(this.target);
+    container.innerHTML = ''; // Clear the container before adding the new player
     container.appendChild(this.player);
   }
 
@@ -84,4 +83,33 @@ class VLCPlayer {
     const seconds = Math.floor(time % 60);
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }
+}
+
+function changeChannel(channelUrl) {
+  // Show interstitial ad before changing the channel
+  showInterstitialAd().then(() => {
+    var vlcPlayer = new VLCPlayer({
+      target: 'vlcPlayer',
+      url: channelUrl,
+      autoplay: true,
+      controls: true
+    });
+    vlcPlayer.init();
+  }).catch(error => {
+    console.error('Error showing interstitial ad:', error);
+  });
+}
+
+function showInterstitialAd() {
+  return new Promise((resolve, reject) => {
+    // This is a placeholder function. Replace it with the actual function call to show an interstitial ad
+    // provided by your ad network. Ensure to resolve the promise once the ad has been displayed or closed.
+    console.log("Showing interstitial ad...");
+
+    // Example: resolve the promise after a timeout to simulate ad display
+    setTimeout(() => {
+      console.log("Interstitial ad shown");
+      resolve();
+    }, 1000); // Simulate a 3-second ad display
+  });
 }
