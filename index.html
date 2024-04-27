@@ -1,24 +1,133 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>PHC M3U8 Player</title>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://unpkg.com/popper.js@1.12.3"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="home.css">
-        <script type="text/javascript" src="main.js"></script>
-    </head>
-    <body>
-        <div class="col-lg-6" id="text-box">
-            <h1 class="page-name">M3U8 Player</h1>
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Paste the m3u8 link here" id="m3u8-placeholder">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button" id="play-btn">Play</button>
-                </span>
-            </div>
+<head>
+    <script src="./translate.js"></script>
+    <style>
+        /* CSS for floating social media buttons */
+        .social-media-buttons {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 9999;
+        }
+
+        .social-media-buttons a {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+    <title>Stream Your Favorite Channels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./vlc.css">
+    <script type="text/javascript" src="./vlc.js"></script>
+    <style>
+        /* Existing CSS styles */
+    </style>
+</head>
+<body>
+    <div id="adModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p><script async="async" data-cfasync="false" src="//detachteethsolitude.com/8754a05657dcc92146f8a2328647a238/invoke.js"></script>
+                <div id="container-8754a05657dcc92146f8a2328647a238"></div>
+            </p>
         </div>
-    </body>
+    </div>
+
+    <script src="script.js"></script>
+    <div id="clickTimes"></div>
+    <div class="container">
+        <h1>Watch Live Channels</h1>
+        <select id="channelSelect" onchange="changeChannel(this.value)">
+  <option value="http://143.244.60.30/ESPN/index.m3u8">ESPN</option>
+  <option value="https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/discovery_dr.m3u8">DISCOVERY</option>
+  <option value="https://cdn1.skygo.mn/live/disk1/Discovery_Asia/HLS-FTA/Discovery_Asia.m3u8">DISCOVERY ASIA</option>
+  <option value="https://dreamstartv.com/hls/stream.m3u8">DREAMSTAR TV</option>
+  <option value="https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/dreamworkstag_qp.m3u8">DREAMWORKS</option>
+  <option value="https://edge1.laotv.la/live/HBO/index.m3u8">HBO</option>
+  <option value="https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8">HBO HD</option>
+  <option value="https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8">HBO FAMILY</option>
+  <option value="https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/historyhd_dr.m3u8">HISTORY HD</option>
+  <option value="https://qp-pldt-live-grp-08-prod.akamaized.net/out/u/hitshd_qp.m3u8">HITS HD</option>
+  <option value="https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/hitsmovies_dr.m3u8">HITS MOVIES</option>
+  <option value="https://qp-pldt-live-grp-09-prod.akamaized.net/out/u/hitsnow_qp.m3u8">HITS NOW</option>
+  <option value="https://adultswim-vodlive.cdn.turner.com/live/mr-pickles/stream.m3u8">MR PICKLES</option>
+        </select>
+        <div id="vlcPlayer"></div>
+        <div class="ad-container">
+            <script async="async" data-cfasync="false" src="//detachteethsolitude.com/8754a05657dcc92146f8a2328647a238/invoke.js"></script>
+            <div id="container-8754a05657dcc92146f8a2328647a238"></div>
+        </div>
+    </div>
+
+    <script>
+        function closead() {
+            document.getElementById('vigneta').style.display = 'none';
+        }
+
+        function changeChannel(channelUrl) {
+            // Show interstitial ad before changing the channel
+            showInterstitialAd().then(() => {
+                try {
+                    var vlcPlayer = new VLCPlayer({
+                        target: 'vlcPlayer',
+                        url: channelUrl,
+                        autoplay: true,
+                        controls: true
+                    });
+                    vlcPlayer.init();
+                } catch (error) {
+                    console.error('Error initializing VLC player:', error);
+                }
+            }).catch(error => {
+                console.error('Error showing interstitial ad:', error);
+            });
+        }
+
+        function showInterstitialAd() {
+            return new Promise((resolve, reject) => {
+                // This is a placeholder function. Replace it with the actual function call to show an interstitial ad
+                // provided by your ad network. Ensure to resolve the promise once the ad has been displayed or closed.
+                console.log("Showing interstitial ad...");
+
+                // Example: resolve the promise after a timeout to simulate ad display
+                setTimeout(() => {
+                    console.log("Interstitial ad shown");
+                    resolve();
+                }, 1000); // Simulate a 3-second ad display
+            });
+        }
+    </script>
+    <div>
+        <p id="visitorCount"></p>
+        <p id="visitorCountry"></p>
+    </div>
+
+    <!-- Add the 'social-media-buttons' class to a container div -->
+    <div class="social-media-buttons">
+        <!-- Facebook Share Button -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hd-tv.vercel.app/" target="_blank">
+            <img src="https://img.freepik.com/premium-vector/social-media-icon-illustration-facebook-facebook-icon-vector-illustration_561158-2134.jpg?size=338&ext=jpg&ga=GA1.1.553209589.1713916800&semt=ais" alt="Share on Facebook" width="50" height="50">
+        </a>
+
+        <!-- Twitter Share Button -->
+        <a href="https://twitter.com/intent/tweet?url=https://hd-tv.vercel.app/&text=Check%20out%20this%20amazing%20content!" target="_blank">
+            <img src="https://www.freeiconspng.com/thumbs/twitter-icon/keywords-colors-icons-desktop-icons-style-simple-3.png" alt="Share on Twitter" width="50" height="50">
+        </a>
+
+        <!-- Instagram Share Button -->
+        <a href="https://www.instagram.com/?url=https://hd-tv.vercel.app/" target="_blank">
+            <img src="https://image.similarpng.com/thumbnail/2020/05/New-Instagram-icon-vector-PNG.png" alt="Share on Instagram" width="50" height="50">
+        </a>
+
+        <!-- Add more social media platforms as needed -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Existing visitor count and country code
+        });
+    </script>
+</body>
 </html>
