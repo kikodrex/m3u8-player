@@ -1,3 +1,4 @@
+console.log('vlc.js loaded');
 class VLCPlayer {
   constructor(options) {
     this.target = options.target;
