@@ -1,58 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Stream Your Favorite Channels</title>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <!-- Rest of your HTML code -->
+  <title>Play .m3u8 File</title>
 </head>
 <body>
-  <!-- Rest of your HTML code -->
-  <select id="channelSelect" onchange="changeChannel(this.value)">
-    <option value="https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8">HBO Family</option>
-    <option value="https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8">HBO HD</option>
-    <option value="http://143.244.60.30/ESPN/index.m3u8">ESPN</option>
-    <!-- Add more channel options as needed -->
-  </select>
-  <video id="video" controls></video>
-  <!-- Rest of your HTML code -->
-
-  <script>
-    function changeChannel(channelUrl) {
-      // Show interstitial ad before changing the channel
-      showInterstitialAd().then(() => {
-        if (Hls.isSupported()) {
-          var hls = new Hls();
-          hls.loadSource(channelUrl);
-          hls.attachMedia(video);
-          hls.on(Hls.Events.MANIFEST_PARSED, function() {
-            video.play();
-          });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = channelUrl;
-          video.addEventListener('canplay', function() {
-            video.play();
-          });
-        } else {
-          console.error('HLS is not supported in this browser');
-        }
-      }).catch(error => {
-        console.error('Error showing interstitial ad:', error);
-      });
-    }
-
-    function showInterstitialAd() {
-      return new Promise((resolve, reject) => {
-        // This is a placeholder function. Replace it with the actual function call to show an interstitial ad
-        // provided by your ad network. Ensure to resolve the promise once the ad has been displayed or closed.
-        console.log("Showing interstitial ad...");
-
-        // Example: resolve the promise after a timeout to simulate ad display
-        setTimeout(() => {
-          console.log("Interstitial ad shown");
-          resolve();
-        }, 1000); // Simulate a 3-second ad display
-      });
-    }
-  </script>
+  <video controls>
+    <source src="http://143.244.60.30/ESPN/index.m3u8" type="application/x-mpegURL">
+    Your browser does not support the video tag.
+  </video>
 </body>
 </html>
