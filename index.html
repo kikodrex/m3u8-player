@@ -1,133 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="./translate.js"></script>
-    <style>
-        /* CSS for floating social media buttons */
-        .social-media-buttons {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            z-index: 9999;
-        }
-
-        .social-media-buttons a {
-            display: block;
-            margin-bottom: 10px;
-        }
-    </style>
-    <title>Stream Your Favorite Channels</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./vlc.css">
-    <script type="text/javascript" src="./vlc.js"></script>
-    <style>
-        /* Existing CSS styles */
-    </style>
+  <title>Stream Your Favorite Channels</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <!-- Rest of your HTML code -->
 </head>
 <body>
-    <div id="adModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p><script async="async" data-cfasync="false" src="//detachteethsolitude.com/8754a05657dcc92146f8a2328647a238/invoke.js"></script>
-                <div id="container-8754a05657dcc92146f8a2328647a238"></div>
-            </p>
-        </div>
-    </div>
+  <!-- Rest of your HTML code -->
+  <select id="channelSelect" onchange="changeChannel(this.value)">
+    <option value="https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8">HBO Family</option>
+    <option value="https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8">HBO HD</option>
+    <!-- Add more channel options as needed -->
+  </select>
+  <video id="video" controls></video>
+  <!-- Rest of your HTML code -->
 
-    <script src="script.js"></script>
-    <div id="clickTimes"></div>
-    <div class="container">
-        <h1>Watch Live Channels</h1>
-        <select id="channelSelect" onchange="changeChannel(this.value)">
-  <option value="http://143.244.60.30/ESPN/index.m3u8">ESPN</option>
-  <option value="https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/discovery_dr.m3u8">DISCOVERY</option>
-  <option value="https://cdn1.skygo.mn/live/disk1/Discovery_Asia/HLS-FTA/Discovery_Asia.m3u8">DISCOVERY ASIA</option>
-  <option value="https://dreamstartv.com/hls/stream.m3u8">DREAMSTAR TV</option>
-  <option value="https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/dreamworkstag_qp.m3u8">DREAMWORKS</option>
-  <option value="https://edge1.laotv.la/live/HBO/index.m3u8">HBO</option>
-  <option value="https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8">HBO HD</option>
-  <option value="https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8">HBO FAMILY</option>
-  <option value="https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/historyhd_dr.m3u8">HISTORY HD</option>
-  <option value="https://qp-pldt-live-grp-08-prod.akamaized.net/out/u/hitshd_qp.m3u8">HITS HD</option>
-  <option value="https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/hitsmovies_dr.m3u8">HITS MOVIES</option>
-  <option value="https://qp-pldt-live-grp-09-prod.akamaized.net/out/u/hitsnow_qp.m3u8">HITS NOW</option>
-  <option value="https://adultswim-vodlive.cdn.turner.com/live/mr-pickles/stream.m3u8">MR PICKLES</option>
-        </select>
-        <div id="vlcPlayer"></div>
-        <div class="ad-container">
-            <script async="async" data-cfasync="false" src="//detachteethsolitude.com/8754a05657dcc92146f8a2328647a238/invoke.js"></script>
-            <div id="container-8754a05657dcc92146f8a2328647a238"></div>
-        </div>
-    </div>
-
-    <script>
-        function closead() {
-            document.getElementById('vigneta').style.display = 'none';
+  <script>
+    function changeChannel(channelUrl) {
+      // Show interstitial ad before changing the channel
+      showInterstitialAd().then(() => {
+        if (Hls.isSupported()) {
+          var hls = new Hls();
+          hls.loadSource(channelUrl);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            video.play();
+          });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = channelUrl;
+          video.addEventListener('canplay', function() {
+            video.play();
+          });
+        } else {
+          console.error('HLS is not supported in this browser');
         }
+      }).catch(error => {
+        console.error('Error showing interstitial ad:', error);
+      });
+    }
 
-        function changeChannel(channelUrl) {
-            // Show interstitial ad before changing the channel
-            showInterstitialAd().then(() => {
-                try {
-                    var vlcPlayer = new VLCPlayer({
-                        target: 'vlcPlayer',
-                        url: channelUrl,
-                        autoplay: true,
-                        controls: true
-                    });
-                    vlcPlayer.init();
-                } catch (error) {
-                    console.error('Error initializing VLC player:', error);
-                }
-            }).catch(error => {
-                console.error('Error showing interstitial ad:', error);
-            });
-        }
+    function showInterstitialAd() {
+      return new Promise((resolve, reject) => {
+        // This is a placeholder function. Replace it with the actual function call to show an interstitial ad
+        // provided by your ad network. Ensure to resolve the promise once the ad has been displayed or closed.
+        console.log("Showing interstitial ad...");
 
-        function showInterstitialAd() {
-            return new Promise((resolve, reject) => {
-                // This is a placeholder function. Replace it with the actual function call to show an interstitial ad
-                // provided by your ad network. Ensure to resolve the promise once the ad has been displayed or closed.
-                console.log("Showing interstitial ad...");
-
-                // Example: resolve the promise after a timeout to simulate ad display
-                setTimeout(() => {
-                    console.log("Interstitial ad shown");
-                    resolve();
-                }, 1000); // Simulate a 3-second ad display
-            });
-        }
-    </script>
-    <div>
-        <p id="visitorCount"></p>
-        <p id="visitorCountry"></p>
-    </div>
-
-    <!-- Add the 'social-media-buttons' class to a container div -->
-    <div class="social-media-buttons">
-        <!-- Facebook Share Button -->
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hd-tv.vercel.app/" target="_blank">
-            <img src="https://img.freepik.com/premium-vector/social-media-icon-illustration-facebook-facebook-icon-vector-illustration_561158-2134.jpg?size=338&ext=jpg&ga=GA1.1.553209589.1713916800&semt=ais" alt="Share on Facebook" width="50" height="50">
-        </a>
-
-        <!-- Twitter Share Button -->
-        <a href="https://twitter.com/intent/tweet?url=https://hd-tv.vercel.app/&text=Check%20out%20this%20amazing%20content!" target="_blank">
-            <img src="https://www.freeiconspng.com/thumbs/twitter-icon/keywords-colors-icons-desktop-icons-style-simple-3.png" alt="Share on Twitter" width="50" height="50">
-        </a>
-
-        <!-- Instagram Share Button -->
-        <a href="https://www.instagram.com/?url=https://hd-tv.vercel.app/" target="_blank">
-            <img src="https://image.similarpng.com/thumbnail/2020/05/New-Instagram-icon-vector-PNG.png" alt="Share on Instagram" width="50" height="50">
-        </a>
-
-        <!-- Add more social media platforms as needed -->
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Existing visitor count and country code
-        });
-    </script>
+        // Example: resolve the promise after a timeout to simulate ad display
+        setTimeout(() => {
+          console.log("Interstitial ad shown");
+          resolve();
+        }, 1000); // Simulate a 3-second ad display
+      });
+    }
+  </script>
 </body>
 </html>
