@@ -36,11 +36,13 @@
       margin-bottom: 5px;
       background-color: #f5f5f5;
       border-radius: 5px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      text-transform: uppercase;
     }
 
     #channel-list li:hover {
       background-color: #e0e0e0;
+      color: red;
       transform: translateX(5px);
     }
 
@@ -72,46 +74,46 @@
     const channels = [
       { name: 'HBO HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8' },
       { name: 'HBO', url: 'https://edge1.laotv.la/live/HBO/index.m3u8' },
-      { name: 'Tap Movies HD', url: 'https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8' },
-      { name: 'Cartoon Network HD', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/cartoonnetworkhd_dr.m3u8' },
-      { name: 'Nickelodeon', url: 'https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/nickelodeon_dr.m3u8' },
-      { name: 'HBO Family HD', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8' },
-      { name: 'Cinemax HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/cinemaxhd_qp.m3u8' },
-      { name: 'One Sports', url: 'https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/onesports_qp.m3u8' },
-      { name: 'CNN Philippines', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/cnnph_qp.m3u8' },
+      { name: 'TAP MOVIES HD', url: 'https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8' },
+      { name: 'CARTOON NETWORK HD', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/cartoonnetworkhd_dr.m3u8' },
+      { name: 'NICKELODEON', url: 'https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/nickelodeon_dr.m3u8' },
+      { name: 'HBO FAMILY HD', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8' },
+      { name: 'CINEMAX HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/cinemaxhd_qp.m3u8' },
+      { name: 'ONE SPORTS', url: 'https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/onesports_qp.m3u8' },
+      { name: 'CNN PHILIPPINES', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/cnnph_qp.m3u8' },
       { name: 'TV5', url: 'https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/tv5_qp.m3u8' },
       { name: 'HBO', url: 'https://edge1.laotv.la/live/HBO/index.m3u8' },
-      { name: 'Discovery Asia', url: 'https://cdn1.skygo.mn/live/disk1/Discovery_Asia/HLS-FTA/Discovery_Asia.m3u8' },
+      { name: 'DISCOVERY ASIA', url: 'https://cdn1.skygo.mn/live/disk1/Discovery_Asia/HLS-FTA/Discovery_Asia.m3u8' },
       { name: 'AXN', url: 'https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/axn_qp.m3u8' },
-      { name: 'Rock Extreme', url: 'https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/rockextreme_dr.m3u8' },
-      { name: 'Rakuten Action', url: 'https://rakuten-action-8-nl.samsung.wurl.tv/playlist.m3u8' },
-      { name: 'Rakuten Comedy', url: 'https://rakuten-comedy-8-nl.samsung.wurl.tv/playlist.m3u8' },
-      { name: 'Rakuten Comedy Movies', url: 'https://rakuten-comedymovies-1-eu.rakuten.wurl.tv/playlist.m3u8' },
-      { name: 'BBC Earth HD', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/bbcearthhd_qp.m3u8' },
-      { name: 'Zhongying TV', url: 'http://cdns.jp-primehome.com:8000/zhongying/live/playlist.m3u8?cid=cs15' },
-      { name: 'Boomerang', url: 'https://cdn1.skygo.mn/live/disk1/Boomerang/HLS-FTA/Boomerang.m3u8' },
-      { name: 'Cinema One', url: 'https://cinemaone-abscbn-ono.amagi.tv/index.m3u8' },
-      { name: 'Crime + Investigation', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/crimeinvestigation_dr.m3u8' },
-      { name: 'Discovery Channel', url: 'https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/discovery_dr.m3u8' },
-      { name: 'DreamWorks Tag', url: 'https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/dreamworkstag_qp.m3u8' },
-      { name: 'Channel 223021', url: 'http://watchtv.best:80/play/live.php?mac=00:1A:79:01:44:12&stream=223021&extension=ts' },
-      { name: 'Channel 223025', url: 'http://watchtv.best:80/play/live.php?mac=00:1A:79:01:44:12&stream=223025&extension=ts' },
-      { name: 'Channel 223027', url: 'http://watchtv.best:80/play/live.php?mac=00:1A:79:01:44:12&stream=223027&extension=ts' },
+      { name: 'ROCK EXTREME', url: 'https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/rockextreme_dr.m3u8' },
+      { name: 'RAKUTEN ACTION', url: 'https://rakuten-action-8-nl.samsung.wurl.tv/playlist.m3u8' },
+      { name: 'RAKUTEN COMEDY', url: 'https://rakuten-comedy-8-nl.samsung.wurl.tv/playlist.m3u8' },
+      { name: 'RAKUTEN COMEDY MOVIES', url: 'https://rakuten-comedymovies-1-eu.rakuten.wurl.tv/playlist.m3u8' },
+      { name: 'BBC EARTH HD', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/bbcearthhd_qp.m3u8' },
+      { name: 'ZHONGYING TV', url: 'http://cdns.jp-primehome.com:8000/zhongying/live/playlist.m3u8?cid=cs15' },
+      { name: 'BOOMERANG', url: 'https://cdn1.skygo.mn/live/disk1/Boomerang/HLS-FTA/Boomerang.m3u8' },
+      { name: 'CINEMA ONE', url: 'https://cinemaone-abscbn-ono.amagi.tv/index.m3u8' },
+      { name: 'CRIME + INVESTIGATION', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/crimeinvestigation_dr.m3u8' },
+      { name: 'DISCOVERY CHANNEL', url: 'https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/discovery_dr.m3u8' },
+      { name: 'DREAMWORKS TAG', url: 'https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/dreamworkstag_qp.m3u8' },
+      { name: 'CHANNEL 223021', url: 'http://watchtv.best:80/play/live.php?mac=00:1A:79:01:44:12&stream=223021&extension=ts' },
+      { name: 'CHANNEL 223025', url: 'http://watchtv.best:80/play/live.php?mac=00:1A:79:01:44:12&stream=223025&extension=ts' },
+      { name: 'CHANNEL 223027', url: 'http://watchtv.best:80/play/live.php?mac=00:1A:79:01:44:12&stream=223027&extension=ts' },
       { name: 'HBO HD', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbohd_qp.m3u8' },
-      { name: 'History HD', url: 'https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/historyhd_dr.m3u8' },
-      { name: 'Hits HD', url: 'https://qp-pldt-live-grp-08-prod.akamaized.net/out/u/hitshd_qp.m3u8' },
-      { name: 'Hits Movies', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/hitsmovies_dr.m3u8' },
-      { name: 'Hits Now', url: 'https://qp-pldt-live-grp-09-prod.akamaized.net/out/u/hitsnow_qp.m3u8' },
-      { name: 'One Sports', url: 'https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/onesports_qp.m3u8' },
-      { name: 'PBA Rush HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/pbarushhd_qp.m3u8' },
-      { name: 'Pinoy Box Office', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/pinoyboxoffice_qp.m3u8' },
-      { name: 'Rock Entertainment', url: 'https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/rockentertainment_dr.m3u8' },
-      { name: 'Tap Action Flix HD', url: 'https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapactionflixhd_qp.m3u8' },
-      { name: 'Tap Edge', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/tapedge_dr.m3u8' },
+      { name: 'HISTORY HD', url: 'https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/historyhd_dr.m3u8' },
+      { name: 'HITS HD', url: 'https://qp-pldt-live-grp-08-prod.akamaized.net/out/u/hitshd_qp.m3u8' },
+      { name: 'HITS MOVIES', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/hitsmovies_dr.m3u8' },
+      { name: 'HITS NOW', url: 'https://qp-pldt-live-grp-09-prod.akamaized.net/out/u/hitsnow_qp.m3u8' },
+      { name: 'ONE SPORTS', url: 'https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/onesports_qp.m3u8' },
+      { name: 'PBA RUSH HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/pbarushhd_qp.m3u8' },
+      { name: 'PINOY BOX OFFICE', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/pinoyboxoffice_qp.m3u8' },
+      { name: 'ROCK ENTERTAINMENT', url: 'https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/rockentertainment_dr.m3u8' },
+      { name: 'TAP ACTION FLIX HD', url: 'https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapactionflixhd_qp.m3u8' },
+      { name: 'TAP EDGE', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/tapedge_dr.m3u8' },
       { name: 'RX1', url: 'https://z88.ubtvfans.com/live/rx1/18/023f73a5f5902a44495cc710ffacc938/index.m3u8' },
-      { name: 'Viva Cinema', url: 'https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/vivacinema_qp.m3u8' },
-      { name: 'Warner TV HD', url: 'https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/warnertvhd_dr.m3u8' },
-      { name: 'Animax', url: 'https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/animax_qp_5.m3u8' }
+      { name: 'VIVA CINEMA', url: 'https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/vivacinema_qp.m3u8' },
+      { name: 'WARNER TV HD', url: 'https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/warnertvhd_dr.m3u8' },
+      { name: 'ANIMAX', url: 'https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/animax_qp_5.m3u8' }
     ];
 
     window.onload = function() {
