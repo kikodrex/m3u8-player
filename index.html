@@ -55,10 +55,12 @@
     }
   </style>
   <script>
-    function playChannel(channel) {
+    function playChannel(channel, type) {
       var videoPlayer = document.getElementById("video-player");
-      videoPlayer.src = channel;
-      videoPlayer.type = "application/x-mpegURL";
+      var sourceElement = document.getElementById("video-source");
+      sourceElement.src = channel;
+      sourceElement.type = type;
+      videoPlayer.load();
       videoPlayer.play();
     }
   </script>
@@ -67,16 +69,16 @@
   <div id="channel-list">
     <h2>Channel List</h2>
     <ul>
-      <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8')">HBO HD</li>
-      <li onclick="playChannel('https://edge1.laotv.la/live/HBO/index.m3u8')">HBO</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8')">Tap Movies HD</li>
+      <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8', 'application/x-mpegURL')">HBO HD</li>
+      <li onclick="playChannel('https://edge1.laotv.la/live/HBO/index.m3u8', 'application/x-mpegURL')">HBO</li>
+      <li onclick="playChannel('https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8', 'application/x-mpegURL')">Tap Movies HD</li>
       <!-- Add more channels here -->
     </ul>
   </div>
   
   <div id="player">
     <video id="video-player" controls>
-      <!-- No source element needed here -->
+      <source id="video-source" type="">
     </video>
   </div>
 </body>
