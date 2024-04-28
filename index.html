@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Cable TV Streaming</title>
+  <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
   <style>
     body {
       display: flex;
@@ -52,14 +54,14 @@
       background-color: #ccc;
     }
 
-    #video-player {
-      max-width: 80%;
-      max-height: 80%;
-      width: auto;
+    .vjs-default-skin {
+      width: 80%;
       height: auto;
     }
   </style>
   <script>
+    videojs.options.autoplay = true;
+
     const channels = [
       { name: 'HBO HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8' },
       { name: 'HBO', url: 'https://edge1.laotv.la/live/HBO/index.m3u8' },
@@ -89,16 +91,18 @@
     };
 
     function playChannel(channel) {
-      const videoPlayer = document.getElementById('video-player');
+      const videoPlayer = videojs('video-player');
 
       // Pause the current player if it exists
-      if (!videoPlayer.paused) {
+      if (videoPlayer.paused) {
         videoPlayer.pause();
       }
 
       // Set the new source and type
-      videoPlayer.src = channel.url;
-      videoPlayer.type = 'application/x-mpegURL';
+      videoPlayer.src({
+        src: channel.url,
+        type: 'application/x-mpegURL'
+      });
 
       // Load and play the new video
       videoPlayer.load();
@@ -115,7 +119,7 @@
   </div>
   
   <div id="player">
-    <video id="video-player" controls>
+    <video id="video-player" class="video-js vjs-default-skin" controls>
     </video>
   </div>
 </body>
