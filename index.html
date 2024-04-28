@@ -27,24 +27,31 @@
       height: auto;
     }
   </style>
+  <script>
+    function playChannel(channel) {
+      var videoPlayer = document.getElementById("video-player");
+      videoPlayer.src = channel;
+      videoPlayer.play();
+    }
+  </script>
 </head>
 <body>
   <div id="channel-list">
     <h2>Channel List</h2>
     <ul>
-      <li>Channel 1</li>
-      <li>Channel 2</li>
-      <li>Channel 3</li>
-      <li>Channel 4</li>
-      <li>Channel 5</li>
+      <li onclick="playChannel('path_to_channel_1')">Channel 1</li>
+      <li onclick="playChannel('path_to_channel_2')">Channel 2</li>
+      <li onclick="playChannel('path_to_channel_3')">Channel 3</li>
+      <li onclick="playChannel('path_to_channel_4')">Channel 4</li>
+      <li onclick="playChannel('path_to_channel_5')">Channel 5</li>
       <!-- Add more channel items here -->
     </ul>
   </div>
   
-  <div id="">
+  <div id="player">
     <h2>Player</h2>
-    <video controls>
-      <source src="path_to_video_file.mp4" type="video/mp4">
+    <video id="video-player" controls>
+      <source src="" type="video/mp4">
       <!-- Add additional video sources for different formats if needed -->
     </video>
   </div>
