@@ -47,15 +47,18 @@
       background-color: #ccc;
     }
     
-    video {
+    #video-player {
       max-width: 100%;
       max-height: 100%;
+      width: 100%;
+      height: auto;
     }
   </style>
   <script>
     function playChannel(channel) {
       var videoPlayer = document.getElementById("video-player");
       videoPlayer.src = channel;
+      videoPlayer.type = "application/x-mpegURL";
       videoPlayer.play();
     }
   </script>
@@ -72,10 +75,8 @@
   </div>
   
   <div id="player">
-    <h2>Player</h2>
     <video id="video-player" controls>
-      <source src="" type="video/mp4">
-      <!-- Add additional video sources for different formats if needed -->
+      <!-- No source element needed here -->
     </video>
   </div>
 </body>
