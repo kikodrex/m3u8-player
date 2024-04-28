@@ -10,7 +10,7 @@
       height: 100vh;
       margin: 0;
     }
-    
+
     #channel-list {
       position: fixed;
       top: 10px;
@@ -23,17 +23,17 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       z-index: 1;
     }
-    
+
     #channel-list h2 {
       margin-top: 0;
     }
-    
+
     #channel-list ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-    
+
     #channel-list li {
       cursor: pointer;
       padding: 5px;
@@ -41,11 +41,11 @@
       background-color: #f5f5f5;
       border-radius: 5px;
     }
-    
+
     #channel-list li:hover {
       background-color: #e0e0e0;
     }
-    
+
     #player {
       flex-grow: 1;
       display: flex;
@@ -53,7 +53,7 @@
       justify-content: center;
       background-color: #ccc;
     }
-    
+
     .vjs-default-skin {
       width: 100%;
       height: auto;
@@ -61,46 +61,33 @@
   </style>
   <script>
     videojs.options.autoplay = true;
-  </script>
-</head>
-<body>
-  <div id="channel-list">
-    <h2>Channel List</h2>
-    <ul>
-      <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8', 'application/x-mpegURL')">HBO HD</li>
-      <li onclick="playChannel('https://edge1.laotv.la/live/HBO/index.m3u8', 'application/x-mpegURL')">HBO</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8', 'application/x-mpegURL')">Tap Movies HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/cartoonnetworkhd_dr.m3u8', 'application/x-mpegURL')">Cartoon Network HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/nickelodeon_dr.m3u8', 'application/x-mpegURL')">Nickelodeon</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8', 'application/x-mpegURL')">HBO Family HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/cinemaxhd_qp.m3u8', 'application/x-mpegURL')">Cinemax HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/onesports_qp.m3u8', 'application/x-mpegURL')">One Sports</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/cnnph_qp.m3u8', 'application/x-mpegURL')">CNN Philippines</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/tv5_qp.m3u8', 'application/x-mpegURL')">TV5</li>
-      <li onclick="playChannel('https://edge1.laotv.la/live/HBO/index.m3u8', 'application/x-mpegURL')">HBO</li>
-    </ul>
-  </div>
-  
-  <div id="player">
-    <video id="video-player" class="video-js vjs-default-skin" controls>
-    </video>
-  </div>
 
-  <script>
-    let currentPlayer;
+    const channels = [
+      { name: 'HBO HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8' },
+      { name: 'HBO', url: 'https://edge1.laotv.la/live/HBO/index.m3u8' },
+      { name: 'Tap Movies HD', url: 'https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8' },
+      { name: 'Cartoon Network HD', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/cartoonnetworkhd_dr.m3u8' },
+      { name: 'Nickelodeon', url: 'https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/nickelodeon_dr.m3u8' },
+      { name: 'HBO Family HD', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8' },
+      { name: 'Cinemax HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/cinemaxhd_qp.m3u8' },
+      { name: 'One Sports', url: 'https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/onesports_qp.m3u8' },
+      { name: 'CNN Philippines', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/cnnph_qp.m3u8' },
+      { name: 'TV5', url: 'https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/tv5_qp.m3u8' },
+      { name: 'HBO', url: 'https://edge1.laotv.la/live/HBO/index.m3u8' }
+    ];
 
-    function playChannel(channel, type) {
+    function playChannel(channel) {
       const videoPlayer = videojs('video-player');
 
       // Pause the current player if it exists
-      if (currentPlayer) {
-        currentPlayer.pause();
+      if (videoPlayer.paused) {
+        videoPlayer.pause();
       }
 
       // Set the new source and type
       videoPlayer.src({
-        src: channel,
-        type: type
+        src: channel.url,
+        type: 'application/x-mpegURL'
       });
 
       // Load and play the new video
@@ -109,10 +96,20 @@
         .catch((error) => {
           console.error("Error playing video:", error);
         });
-
-      // Store the current player
-      currentPlayer = videoPlayer;
     }
   </script>
+</head>
+<body>
+  <div id="channel-list">
+    <h2>Channel List</h2>
+    <ul>
+      <li v-for="channel in channels" @click="playChannel(channel)">{{ channel.name }}</li>
+    </ul>
+  </div>
+  
+  <div id="player">
+    <video id="video-player" class="video-js vjs-default-skin" controls>
+    </video>
+  </div>
 </body>
 </html>
