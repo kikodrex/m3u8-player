@@ -2,26 +2,76 @@
 <html>
 <head>
   <title>Cable TV Streaming</title>
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-  <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
   <style>
-    /* Your existing CSS styles */
-  </style>
-</head>
-<body>
-  <div id="channel-list">
-    <h2>Channel List</h2>
-  </div>
-  
-  <div id="player">
-    <video id="video-player" controls>
-    </video>
-  </div>
+    body {
+      display: flex;
+      height: 100vh;
+      margin: 0;
+    }
 
+    #channel-list {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 200px;
+      background-color: #efefef;
+      padding: 10px;
+      overflow-y: auto;
+      height: calc(100% - 20px);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+
+    #channel-list h2 {
+      margin-top: 0;
+    }
+
+    #channel-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #channel-list li {
+      cursor: pointer;
+      padding: 5px;
+      margin-bottom: 5px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+    }
+
+    #channel-list li:hover {
+      background-color: #e0e0e0;
+    }
+
+    #player {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ccc;
+    }
+
+    #video-player {
+      max-width: 80%;
+      max-height: 80%;
+      width: auto;
+      height: auto;
+    }
+  </style>
   <script>
     const channels = [
       { name: 'HBO HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8' },
-      // Add more channels here
+      { name: 'HBO', url: 'https://edge1.laotv.la/live/HBO/index.m3u8' },
+      { name: 'Tap Movies HD', url: 'https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8' },
+      { name: 'Cartoon Network HD', url: 'https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/cartoonnetworkhd_dr.m3u8' },
+      { name: 'Nickelodeon', url: 'https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/nickelodeon_dr.m3u8' },
+      { name: 'HBO Family HD', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8' },
+      { name: 'Cinemax HD', url: 'https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/cinemaxhd_qp.m3u8' },
+      { name: 'One Sports', url: 'https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/onesports_qp.m3u8' },
+      { name: 'CNN Philippines', url: 'https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/cnnph_qp.m3u8' },
+      { name: 'TV5', url: 'https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/tv5_qp.m3u8' },
+      { name: 'HBO', url: 'https://edge1.laotv.la/live/HBO/index.m3u8' }
     ];
 
     window.onload = function() {
@@ -36,11 +86,6 @@
       });
 
       channelList.appendChild(ul);
-
-      const player = new Plyr('#video-player', {
-        controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
-        autoplay: true
-      });
     };
 
     function playChannel(channel) {
@@ -52,10 +97,8 @@
       }
 
       // Set the new source and type
-      videoPlayer.src = {
-        src: channel.url,
-        type: 'application/x-mpegURL'
-      };
+      videoPlayer.src = channel.url;
+      videoPlayer.type = 'application/x-mpegURL';
 
       // Load and play the new video
       videoPlayer.load();
@@ -65,5 +108,15 @@
         });
     }
   </script>
+</head>
+<body>
+  <div id="channel-list">
+    <h2>Channel List</h2>
+  </div>
+  
+  <div id="player">
+    <video id="video-player" controls>
+    </video>
+  </div>
 </body>
 </html>
