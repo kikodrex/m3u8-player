@@ -8,7 +8,7 @@
       height: 100vh;
       margin: 0;
     }
-    
+
     #channel-list {
       width: 200px;
       background-color: #efefef;
@@ -16,17 +16,17 @@
       overflow-y: auto;
       height: 100%;
     }
-    
+
     #channel-list h2 {
       margin-top: 0;
     }
-    
+
     #channel-list ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-    
+
     #channel-list li {
       cursor: pointer;
       padding: 5px;
@@ -34,11 +34,11 @@
       background-color: #f5f5f5;
       border-radius: 5px;
     }
-    
+
     #channel-list li:hover {
       background-color: #e0e0e0;
     }
-    
+
     #player {
       flex-grow: 1;
       display: flex;
@@ -46,7 +46,7 @@
       justify-content: center;
       background-color: #ccc;
     }
-    
+
     #video-player {
       max-width: 100%;
       max-height: 100%;
@@ -96,7 +96,7 @@
       <li onclick="playChannel('https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/cnnph_qp.m3u8', 'application/x-mpegURL')">CNN Philippines</li>
     </ul>
   </div>
-  
+
   <div id="player">
     <video id="video-player" controls>
     </video>
