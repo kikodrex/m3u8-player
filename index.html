@@ -52,8 +52,6 @@
       max-height: 100%;
       width: 100%;
       height: auto;
-      preload="auto";
-      autoplay;
     }
   </style>
   <script>
@@ -87,15 +85,15 @@
   <div id="channel-list">
     <h2>Channel List</h2>
     <ul>
-      <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8', 'application/x-mpegURL')">HBO HD</li>
-      <li onclick="playChannel('https://edge1.laotv.la/live/HBO/index.m3u8', 'application/x-mpegURL')">HBO</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8', 'application/x-mpegURL')">Tap Movies HD</li>
+      <li onclick="playChannel('path_to_video_file.mp4', 'video/mp4')">HBO HD</li>
+      <li onclick="playChannel('path_to_video_file.mp4', 'video/mp4')">HBO</li>
+      <li onclick="playChannel('path_to_video_file.mp4', 'video/mp4')">Tap Movies HD</li>
       <!-- Add more channels here -->
     </ul>
   </div>
   
   <div id="player">
-    <video id="video-player" controls preload="auto" autoplay>
+    <video id="video-player" controls>
     </video>
   </div>
 </body>
