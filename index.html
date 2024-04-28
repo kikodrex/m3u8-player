@@ -55,13 +55,29 @@
     }
   </style>
   <script>
+    let currentPlayer;
+
     function playChannel(channel, type) {
-      var videoPlayer = document.getElementById("video-player");
-      var sourceElement = document.getElementById("video-source");
-      sourceElement.src = channel;
-      sourceElement.type = type;
+      const videoPlayer = document.getElementById("video-player");
+
+      // Pause the current player if it exists
+      if (currentPlayer) {
+        currentPlayer.pause();
+      }
+
+      // Set the new source and type
+      videoPlayer.src = channel;
+      videoPlayer.type = type;
+
+      // Load and play the new video
       videoPlayer.load();
-      videoPlayer.play();
+      videoPlayer.play()
+        .catch((error) => {
+          console.error("Error playing video:", error);
+        });
+
+      // Store the current player
+      currentPlayer = videoPlayer;
     }
   </script>
 </head>
@@ -78,7 +94,6 @@
   
   <div id="player">
     <video id="video-player" controls>
-      <source id="video-source" type="">
     </video>
   </div>
 </body>
