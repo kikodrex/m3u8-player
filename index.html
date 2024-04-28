@@ -36,7 +36,11 @@
     }
     
     #player {
-      flex-grow: 1;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 100vh;
       background-color: #ccc;
       padding: 10px;
       display: flex;
@@ -64,44 +68,7 @@
       <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8')">HBO HD</li>
       <li onclick="playChannel('https://edge1.laotv.la/live/HBO/index.m3u8')">HBO</li>
       <li onclick="playChannel('https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8')">Tap Movies HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/cartoonnetworkhd_dr.m3u8')">Cartoon Network HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/nickelodeon_dr.m3u8')">Nickelodeon</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbofamilyhd_qp.m3u8')">HBO Family HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/cinemaxhd_qp.m3u8')">Cinemax HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/onesports_qp.m3u8')">One Sports</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/cnnph_qp.m3u8')">CNN Philippines</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/tv5_qp.m3u8')">TV5</li>
-      <li onclick="playChannel('https://cdn1.skygo.mn/live/disk1/Discovery_Asia/HLS-FTA/Discovery_Asia.m3u8')">Discovery Asia</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/axn_qp.m3u8')">AXN</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/rockextreme_dr.m3u8')">Rock Extreme</li>
-      <li onclick="playChannel('https://rakuten-action-8-nl.samsung.wurl.tv/playlist.m3u8')">Rakuten Action</li>
-      <li onclick="playChannel('https://rakuten-comedy-8-nl.samsung.wurl.tv/playlist.m3u8')">Rakuten Comedy</li>
-      <li onclick="playChannel('https://rakuten-comedymovies-1-eu.rakuten.wurl.tv/playlist.m3u8')">Rakuten Comedy Movies</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/bbcearthhd_qp.m3u8')">BBC Earth HD</li>
-      <li onclick="playChannel('http://cdns.jp-primehome.com:8000/zhongying/live/playlist.m3u8?cid=cs15')">Zhongying</li>
-      <li onclick="playChannel('https://cdn1.skygo.mn/live/disk1/Boomerang/HLS-FTA/Boomerang.m3u8')">Boomerang</li>
-      <li onclick="playChannel('https://cinemaone-abscbn-ono.amagi.tv/index.m3u8')">Cinema One</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/crimeinvestigation_dr.m3u8')">Crime + Investigation</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/discovery_dr.m3u8')">Discovery Channel</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/dreamworkstag_qp.m3u8')">DreamWorks Tag</li>
-      <li onclick="playChannel('http://watchtv.best:80/play/live.php?mac=00:1A:79:01:44:12&stream=223021&extension=ts')">Channel 223021</li>
-      <li onclick="playChannel('http://watchtv.best:80/play/live.php?mac=00:1A:79:01:44:12&stream=223025&extension=ts')">Channel 223025</li>
-      <li onclick="playChannel('http://watchtv.best:80/play/live.php?mac=00:1A:79:01:44:12&stream=223027&extension=ts')">Channel 223027</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-03-prod.akamaized.net/out/u/hbohd_qp.m3u8')">HBO HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/historyhd_dr.m3u8')">History HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-08-prod.akamaized.net/out/u/hitshd_qp.m3u8')">Hits HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/hitsmovies_dr.m3u8')">Hits Movies</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-09-prod.akamaized.net/out/u/hitsnow_qp.m3u8')">Hits Now</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/onesports_qp.m3u8')">One Sports</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/pbarushhd_qp.m3u8')">PBA Rush HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/pinoyboxoffice_qp.m3u8')">Pinoy Box Office</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/rockentertainment_dr.m3u8')">Rock Entertainment</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapactionflixhd_qp.m3u8')">Tap Action Flix HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-12-prod.akamaized.net/out/u/tapedge_dr.m3u8')">Tap Edge</li>
-      <li onclick="playChannel('https://z88.ubtvfans.com/live/rx1/18/023f73a5f5902a44495cc710ffacc938/index.m3u8')">UBTV</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/vivacinema_qp.m3u8')">Viva Cinema</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/warnertvhd_dr.m3u8')">Warner TV HD</li>
-      <li onclick="playChannel('https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/animax_qp_5.m3u8')">Animax</li>
+      <!-- Add more channels here -->
     </ul>
   </div>
   
