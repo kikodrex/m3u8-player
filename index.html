@@ -2,32 +2,84 @@
 <html>
 <head>
   <title>Cable TV Streaming</title>
-  <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
-  <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
   <style>
-    /* Your existing CSS styles */
+    body {
+      display: flex;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    #channel-list {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 200px;
+      background-color: #efefef;
+      padding: 10px;
+      overflow-y: auto;
+      height: calc(100% - 20px);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    #channel-list h2 {
+      margin-top: 0;
+    }
+    
+    #channel-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    #channel-list li {
+      cursor: pointer;
+      padding: 5px;
+      margin-bottom: 5px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+    }
+    
+    #channel-list li:hover {
+      background-color: #e0e0e0;
+    }
+    
+    #player {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ccc;
+    }
+    
+    #video-player {
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: auto;
+    }
+    
+    .glow {
+      animation: glowing 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes glowing {
+      0% {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.7),
+                    0 0 30px rgba(0, 0, 0, 0.5);
+      }
+      100% {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      }
+    }
   </style>
-</head>
-<body>
-  <div id="channel-list">
-    <h2>Channel List</h2>
-    <ul>
-      <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8', 'application/x-mpegURL')">HBO HD</li>
-      <li onclick="playChannel('https://edge1.laotv.la/live/HBO/index.m3u8', 'application/x-mpegURL')">HBO</li>
-      <!-- Add more channels here -->
-    </ul>
-  </div>
-
-  <div id="player">
-    <video id="video-player" class="video-js vjs-default-skin" controls>
-    </video>
-  </div>
-
   <script>
     let currentPlayer;
 
     function playChannel(channel, type) {
-      const videoPlayer = videojs('video-player');
+      const videoPlayer = document.getElementById("video-player");
 
       // Pause the current player if it exists
       if (currentPlayer) {
@@ -35,10 +87,8 @@
       }
 
       // Set the new source and type
-      videoPlayer.src({
-        src: channel,
-        type: type
-      });
+      videoPlayer.src = channel;
+      videoPlayer.type = type;
 
       // Load and play the new video
       videoPlayer.load();
@@ -51,5 +101,21 @@
       currentPlayer = videoPlayer;
     }
   </script>
+</head>
+<body>
+  <div id="channel-list" class="glow">
+    <h2>Channel List</h2>
+    <ul>
+      <li onclick="playChannel('https://qp-pldt-live-grp-01-prod.akamaized.net/out/u/hbosighd_qp.m3u8', 'application/x-mpegURL')">HBO HD</li>
+      <li onclick="playChannel('https://edge1.laotv.la/live/HBO/index.m3u8', 'application/x-mpegURL')">HBO</li>
+      <li onclick="playChannel('https://qp-pldt-live-grp-06-prod.akamaized.net/out/u/tapmovieshd_qp.m3u8', 'application/x-mpegURL')">Tap Movies HD</li>
+      <!-- Add more channels here -->
+    </ul>
+  </div>
+  
+  <div id="player">
+    <video id="video-player" controls>
+    </video>
+  </div>
 </body>
 </html>
