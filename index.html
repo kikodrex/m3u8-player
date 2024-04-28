@@ -174,7 +174,10 @@
       });
 
       channelList.appendChild(ul);
-    };
+     document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+};
 
     function playChannel(channelName) {
       const videoPlayer = videojs('video-player');
